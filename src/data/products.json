@@ -1,0 +1,206 @@
+[
+  {
+    "id": 1,
+    "name": "Laptop Dell Inspiron 15",
+    "category": "laptops",
+    "price": 850,
+    "precio_mayorista": 720,
+    "image": "https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=600&q=80",
+    "specs": {
+      "Procesador": "Intel Core i5-1235U",
+      "RAM": "16 GB DDR4",
+      "Almacenamiento": "512 GB SSD",
+      "Pantalla": "15.6 FHD",
+      "Sistema": "Windows 11"
+    },
+    "available": true,
+    "tags": ["Nuevo"]
+  },
+  {
+    "id": 2,
+    "name": "Laptop HP Pavilion 14",
+    "category": "laptops",
+    "price": 699,
+    "precio_mayorista": 590,
+    "image": "https://images.unsplash.com/photo-1544731612-de7f96afe55f?w=600&q=80",
+    "specs": {
+      "Procesador": "AMD Ryzen 5 7520U",
+      "RAM": "8 GB DDR5",
+      "Almacenamiento": "256 GB SSD",
+      "Pantalla": "14 FHD IPS",
+      "Sistema": "Windows 11"
+    },
+    "available": true,
+    "tags": ["Oferta"]
+  },
+  {
+    "id": 3,
+    "name": "Laptop ASUS ROG Zephyrus G14",
+    "category": "laptops",
+    "price": 1450,
+    "precio_mayorista": 1230,
+    "image": "https://images.unsplash.com/photo-1629131726692-1accd0c53ce0?w=600&q=80",
+    "specs": {
+      "Procesador": "AMD Ryzen 9 7940HS",
+      "RAM": "32 GB DDR5",
+      "Almacenamiento": "1 TB NVMe SSD",
+      "GPU": "NVIDIA RTX 4060",
+      "Pantalla": "14 QHD 165Hz"
+    },
+    "available": true,
+    "tags": ["Nuevo", "Oferta"]
+  },
+  {
+    "id": 4,
+    "name": "PC de Escritorio Gamer Pro",
+    "category": "pcs",
+    "price": 1200,
+    "precio_mayorista": 1020,
+    "image": "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&q=80",
+    "specs": {
+      "Procesador": "Intel Core i7-13700K",
+      "RAM": "32 GB DDR5",
+      "Almacenamiento": "1 TB NVMe SSD",
+      "GPU": "NVIDIA RTX 4070",
+      "Fuente": "750W 80+ Gold"
+    },
+    "available": true,
+    "tags": ["Nuevo"]
+  },
+  {
+    "id": 5,
+    "name": "PC All-in-One Dell Optiplex",
+    "category": "pcs",
+    "price": 780,
+    "precio_mayorista": 660,
+    "image": "https://images.unsplash.com/photo-1547082299-de196ea013d6?w=600&q=80",
+    "specs": {
+      "Procesador": "Intel Core i5-12500",
+      "RAM": "16 GB DDR4",
+      "Almacenamiento": "512 GB SSD",
+      "Pantalla": "23.8 FHD Touch",
+      "Sistema": "Windows 11"
+    },
+    "available": false,
+    "tags": []
+  },
+  {
+    "id": 6,
+    "name": "Procesador AMD Ryzen 7 7700X",
+    "category": "componentes",
+    "price": 280,
+    "precio_mayorista": 235,
+    "image": "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?w=600&q=80",
+    "specs": {
+      "Nucleos": "8 Cores / 16 Threads",
+      "Frecuencia": "4.5 GHz base / 5.4 GHz boost",
+      "Socket": "AM5",
+      "TDP": "105W",
+      "Cache": "40 MB"
+    },
+    "available": true,
+    "tags": ["Nuevo"]
+  },
+  {
+    "id": 7,
+    "name": "Memoria RAM Corsair 32GB DDR5",
+    "category": "componentes",
+    "price": 115,
+    "precio_mayorista": 97,
+    "image": "https://images.unsplash.com/photo-1641426858571-7c66b25b5b74?w=600&q=80",
+    "specs": {
+      "Capacidad": "32 GB (2x16 GB)",
+      "Tipo": "DDR5",
+      "Velocidad": "6000 MHz CL36",
+      "Voltaje": "1.35V",
+      "RGB": "Si"
+    },
+    "available": true,
+    "tags": ["Oferta"]
+  },
+  {
+    "id": 8,
+    "name": "SSD Samsung 990 Pro 1TB",
+    "category": "componentes",
+    "price": 95,
+    "precio_mayorista": 80,
+    "image": "https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=600&q=80",
+    "specs": {
+      "Capacidad": "1 TB",
+      "Interfaz": "NVMe M.2 PCIe 4.0",
+      "Lectura": "7450 MB/s",
+      "Escritura": "6900 MB/s",
+      "Garantia": "5 anos"
+    },
+    "available": true,
+    "tags": []
+  },
+  {
+    "id": 9,
+    "name": "Monitor LG UltraWide 34",
+    "category": "accesorios",
+    "price": 420,
+    "precio_mayorista": 355,
+    "image": "https://images.unsplash.com/photo-1527443224154-c4a573d5f5e1?w=600&q=80",
+    "specs": {
+      "Tamano": "34 Curvo",
+      "Resolucion": "3440x1440 UWQHD",
+      "Panel": "IPS",
+      "Tasa de refresco": "144 Hz",
+      "Conectividad": "HDMI 2.0 / DisplayPort 1.4"
+    },
+    "available": true,
+    "tags": ["Nuevo"]
+  },
+  {
+    "id": 10,
+    "name": "Teclado Mecanico Keychron K2",
+    "category": "accesorios",
+    "price": 89,
+    "precio_mayorista": 75,
+    "image": "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=600&q=80",
+    "specs": {
+      "Layout": "75% Compacto",
+      "Switches": "Gateron Red",
+      "Conectividad": "Bluetooth 5.1 / USB-C",
+      "Retroiluminacion": "RGB",
+      "Compatible": "Mac / Windows"
+    },
+    "available": true,
+    "tags": ["Oferta"]
+  },
+  {
+    "id": 11,
+    "name": "Mouse Logitech MX Master 3S",
+    "category": "accesorios",
+    "price": 99,
+    "precio_mayorista": 84,
+    "image": "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=600&q=80",
+    "specs": {
+      "DPI": "200-8000 DPI",
+      "Conectividad": "Bluetooth / USB Logi Bolt",
+      "Bateria": "70 dias",
+      "Botones": "7 programables",
+      "Compatible": "Mac / Windows / Linux"
+    },
+    "available": true,
+    "tags": []
+  },
+  {
+    "id": 12,
+    "name": "Laptop Lenovo ThinkPad X1 Carbon",
+    "category": "laptops",
+    "price": 1299,
+    "precio_mayorista": 1100,
+    "image": "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=600&q=80",
+    "specs": {
+      "Procesador": "Intel Core i7-1365U",
+      "RAM": "32 GB LPDDR5",
+      "Almacenamiento": "1 TB NVMe SSD",
+      "Pantalla": "14 OLED 2.8K",
+      "Bateria": "57 Wh / hasta 15h"
+    },
+    "available": false,
+    "tags": []
+  }
+]

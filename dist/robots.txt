@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://nexustechnologyrd.vercel.app/sitemap.xml
