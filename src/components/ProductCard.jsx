@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ChevronLeft, ChevronRight, Crown, ZoomIn, Download } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Crown, ZoomIn, Download, AlignLeft } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import Lightbox from './Lightbox';
 
@@ -14,6 +14,7 @@ const TAG_STYLES = {
 };
 
 const CATEGORY_LABELS = {
+  celulares: 'Celular',
   laptops: 'Laptop',
   pcs: 'PC',
   componentes: 'Componente',
@@ -27,12 +28,13 @@ function buildWhatsAppUrl(product, isWholesale) {
     ? `RD$${product.precio_mayorista.toLocaleString('es-DO')} (precio mayorista)`
     : `RD$${product.price.toLocaleString('es-DO')}`;
 
-  const specs = Object.entries(product.specs || {})
-    .map(([k, v]) => `• ${k}: ${v}`)
-    .join('\n');
+  const specEntries = Object.entries(product.specs || {}).filter(([k]) => k !== 'description');
+  const details = product.specs?.description
+    ? product.specs.description
+    : specEntries.map(([k, v]) => `• ${k}: ${v}`).join('\n');
 
   let text = `Hola! Acabo de ver esto en tu tienda y me interesa comprarlo:\n*${product.name}*\n💰 Precio: ${priceLabel}`;
-  if (specs) text += `\n\n📋 Especificaciones:\n${specs}`;
+  if (details) text += `\n\n📋 Detalles:\n${details}`;
   if (hasValidLink) text += `\n\n🖼️ Ver imagen: ${mainImage}`;
   text += `\n\n¿Tienen disponibles?`;
 
@@ -104,14 +106,14 @@ export default function ProductCard({ product }) {
 
         {/* ─── Image ─── */}
         <div
-          className={`relative w-full aspect-[4/3] bg-transparent p-1 group/gallery ${isWholesale ? 'cursor-zoom-in' : ''}`}
+          className={`relative w-full aspect-[4/3] sm:aspect-[4/3] max-sm:aspect-square bg-transparent p-0 group/gallery ${isWholesale ? 'cursor-zoom-in' : ''}`}
           onClick={isWholesale ? openLightbox : undefined}
         >
           <img
             src={allImages[imgIdx] || 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=80'}
             alt={name}
             loading="lazy"
-            className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105 mix-blend-multiply dark:mix-blend-normal"
+            className="w-full h-full object-contain p-2 transition-transform duration-500 hover:scale-105 max-sm:scale-110 mix-blend-multiply dark:mix-blend-normal"
             onError={e => { e.target.src = 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=80'; }}
           />
 
@@ -222,16 +224,30 @@ export default function ProductCard({ product }) {
             )}
           </div>
 
-          {/* ─── SPECS — compact design ─── */}
-          {specEntries.length > 0 && (
-            <div className="text-[13px] text-slate-600 dark:text-slate-400 font-medium leading-relaxed mt-1">
-              <p className="truncate" title={specEntries.slice(0, 3).map(e => e[1]).join(' · ')}>
-                {specEntries.slice(0, 3).map(e => e[1]).join(' · ')}
-              </p>
-              {specEntries.length > 3 && (
-                <p className="truncate" title={specEntries.slice(3).map(e => e[1]).join(' · ')}>
-                  {specEntries.slice(3).map(e => e[1]).join(' · ')}
-                </p>
+          {/* ─── DESCRIPTION / SPECS ─── */}
+          {(specs?.description || specEntries.length > 0) && (
+            <div className="mt-1 p-3 rounded-xl bg-slate-50 dark:bg-dark-600/50 border border-slate-100 dark:border-dark-500 shadow-sm">
+              {specs?.description ? (
+                <div className="flex gap-2 relative">
+                  <AlignLeft size={16} className="text-brand-500 mt-0.5 flex-shrink-0" />
+                  <p className="text-[13px] text-slate-700 dark:text-slate-300 font-medium leading-relaxed whitespace-pre-wrap line-clamp-5">
+                    {specs.description}
+                  </p>
+                </div>
+              ) : (
+                <div className="space-y-1.5 text-[13px] font-medium leading-relaxed">
+                  {specEntries.slice(0, 3).map(([k, v], i) => (
+                    <p key={i} className="break-words flex gap-2">
+                      <span className="text-slate-400 dark:text-slate-500 min-w-max font-semibold">{k}:</span> 
+                      <span className="text-slate-700 dark:text-slate-300">{v}</span>
+                    </p>
+                  ))}
+                  {specEntries.length > 3 && (
+                    <p className="text-brand-600 dark:text-brand-400 text-xs font-bold pt-1.5">
+                      +{specEntries.length - 3} más detalles…
+                    </p>
+                  )}
+                </div>
               )}
             </div>
           )}

@@ -12,13 +12,29 @@ export default function Hero() {
 
       <div className="relative w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center z-10">
         
-        {/* Main Logo & Glow */}
-        <div className="relative mb-6 group">
-          <div className="absolute inset-0 bg-brand-400/30 blur-2xl rounded-full scale-110 opacity-70 group-hover:opacity-100 transition-opacity duration-700"></div>
-          <img 
-            src="/logo.png" 
-            alt="Nexus Technology Rd" 
-            className="relative w-full max-w-[280px] sm:max-w-[450px] md:max-w-[550px] h-auto object-contain drop-shadow-[0_0_15px_rgba(56,189,248,0.4)] animate-float"
+        {/* Main Logo & Animated rings */}
+        <div className="relative mb-6 flex items-center justify-center">
+
+          {/* Outer orbital ring */}
+          <div className="absolute w-[340px] h-[340px] sm:w-[500px] sm:h-[500px] rounded-full border border-brand-500/20 animate-orbit pointer-events-none">
+            <span className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-brand-400 shadow-[0_0_10px_4px_rgba(37,99,235,0.6)]" />
+            <span className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_8px_3px_rgba(6,182,212,0.5)]" />
+          </div>
+
+          {/* Inner orbital ring (reverse) */}
+          <div className="absolute w-[260px] h-[260px] sm:w-[400px] sm:h-[400px] rounded-full border border-cyan-500/15 animate-orbit-reverse pointer-events-none">
+            <span className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-2 h-2 rounded-full bg-brand-300 shadow-[0_0_8px_3px_rgba(56,189,248,0.5)]" />
+          </div>
+
+          {/* Background glow blob */}
+          <div className="absolute w-56 h-56 sm:w-80 sm:h-80 rounded-full bg-brand-500/15 blur-3xl animate-pulse-slow pointer-events-none" />
+
+          {/* Logo image */}
+          <img
+            src="/logo.png"
+            alt="Nexus Technology Rd"
+            className="relative w-full max-w-[240px] sm:max-w-[400px] md:max-w-[500px] h-auto object-contain animate-logo-entrance animate-logo-glow animate-logo-float"
+            style={{ animationDelay: '0s, 1s, 1.2s' }}
             onError={(e) => {
               e.target.onerror = null;
               e.target.parentElement.innerHTML = '<span class="text-5xl font-black text-white px-8 py-4 bg-brand-600/20 rounded-2xl border border-brand-500/30">NEXUS</span>';
@@ -40,7 +56,7 @@ export default function Hero() {
 
         {/* Sub */}
         <p className="text-slate-400 text-sm sm:text-lg md:text-xl max-w-3xl mx-auto mb-8 font-light leading-relaxed animate-slide-up" style={{ animationDelay: '100ms' }}>
-          Laptops, PCs de escritorio, componentes y accesorios. Consulta disponibilidad y precios directamente por WhatsApp.
+          Laptops, celulares, componentes y accesorios. Consulta disponibilidad y precios directamente por WhatsApp.
         </p>
 
         {/* CTAs */}

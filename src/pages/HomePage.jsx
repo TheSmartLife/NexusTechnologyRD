@@ -8,9 +8,12 @@ import { SlidersHorizontal } from 'lucide-react';
 
 export default function HomePage() {
   const { products, loading } = useProducts();
-  const [activeCategory, setActiveCategory] = useState('todos');
+  const [activeCategory, setActiveCategory] = useState('laptops');
   const [search, setSearch] = useState('');
   const [showOutOfStock, setShowOutOfStock] = useState(true);
+
+  // Priority order for "Todos" category
+  const CATEGORY_ORDER = { laptops: 0, celulares: 1, accesorios: 2, componentes: 3 };
 
   const filtered = useMemo(() => {
     let result = products;
@@ -37,6 +40,15 @@ export default function HomePage() {
       });
     }
 
+    // Sort by category priority when in "todos" mode
+    if (activeCategory === 'todos') {
+      result = [...result].sort((a, b) => {
+        const oa = CATEGORY_ORDER[a.category] ?? 99;
+        const ob = CATEGORY_ORDER[b.category] ?? 99;
+        return oa - ob;
+      });
+    }
+
     return result;
   }, [products, activeCategory, search, showOutOfStock]);
 
@@ -46,10 +58,7 @@ export default function HomePage() {
         activeCategory={activeCategory}
         onCategoryChange={setActiveCategory}
         search={search}
-        onSearchChange={(val) => {
-          setSearch(val);
-          if (val) setActiveCategory('todos'); // Si busca algo, buscar en todas las categorías
-        }}
+        onSearchChange={setSearch}
       />
 
       <Hero />

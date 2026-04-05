@@ -106,6 +106,35 @@ body {
   50%       { opacity: 0.5; }
 }
 
+/* ─── Logo intro + glow ─── */
+@keyframes logoEntrance {
+  0%   { opacity: 0; transform: scale(0.6) translateY(30px); filter: blur(12px); }
+  60%  { opacity: 1; transform: scale(1.08) translateY(-6px); filter: blur(0); }
+  100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
+}
+@keyframes logoGlow {
+  0%, 100% { filter: drop-shadow(0 0 8px rgba(56,189,248,0.3)) drop-shadow(0 0 20px rgba(37,99,235,0.2)); }
+  50%       { filter: drop-shadow(0 0 20px rgba(56,189,248,0.7)) drop-shadow(0 0 45px rgba(37,99,235,0.5)); }
+}
+@keyframes orbitSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes orbitSpinReverse {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(-360deg); }
+}
+@keyframes logoFloat {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50%       { transform: translateY(-10px) scale(1.02); }
+}
+
+.animate-logo-entrance { animation: logoEntrance 1s cubic-bezier(0.22,1,0.36,1) both; }
+.animate-logo-glow     { animation: logoGlow 2.5s ease-in-out infinite; }
+.animate-logo-float    { animation: logoFloat 4s ease-in-out infinite; }
+.animate-orbit         { animation: orbitSpin 8s linear infinite; }
+.animate-orbit-reverse { animation: orbitSpinReverse 12s linear infinite; }
+
 .animate-fade-in  { animation: fadeIn  0.6s ease both; }
 .animate-slide-up { animation: slideUp 0.6s ease both; }
 .animate-float    { animation: float   3s ease-in-out infinite; }

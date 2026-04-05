@@ -1,5 +1,5 @@
 import { useEffect, useCallback, useState } from 'react';
-import { X, ChevronLeft, ChevronRight, ZoomIn, Download } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, ZoomIn, Download, AlignLeft } from 'lucide-react';
 
 async function downloadImage(src, filename) {
   try {
@@ -93,7 +93,7 @@ export default function Lightbox({ images, current, onChange, onClose, productNa
           </button>
 
           {/* Specs toggle */}
-          {specEntries.length > 0 && (
+          {((specs?.description) || specEntries.length > 0) && (
             <button
               onClick={() => setShowSpecs(v => !v)}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-colors ${
@@ -102,7 +102,7 @@ export default function Lightbox({ images, current, onChange, onClose, productNa
                   : 'bg-white/10 hover:bg-white/20 text-white'
               }`}
             >
-              📋 Specs
+              <AlignLeft size={14} /> Detalles
             </button>
           )}
 
@@ -130,19 +130,29 @@ export default function Lightbox({ images, current, onChange, onClose, productNa
         </div>
 
         {/* Specs panel */}
-        {showSpecs && specEntries.length > 0 && (
-          <div className="w-72 bg-dark-700/80 backdrop-blur-sm border-l border-white/10 flex flex-col py-20 px-5 overflow-y-auto">
-            <h3 className="text-white font-black text-base mb-4 flex items-center gap-2">
-              📋 Especificaciones
+        {showSpecs && ((specs?.description) || specEntries.length > 0) && (
+          <div className="w-80 bg-dark-700/80 backdrop-blur-md border-l border-white/10 flex flex-col py-20 px-6 overflow-y-auto">
+            <h3 className="text-white font-black text-base mb-5 flex items-center gap-2">
+              <AlignLeft size={18} className="text-brand-400" />
+              Detalles del producto
             </h3>
-            <div className="space-y-2">
-              {specEntries.map(([key, value]) => (
-                <div key={key} className="rounded-xl bg-white/5 border border-white/10 p-3">
-                  <div className="text-white/50 text-[10px] font-bold uppercase tracking-wider mb-0.5">{key}</div>
-                  <div className="text-white font-bold text-sm">{value}</div>
-                </div>
-              ))}
-            </div>
+            
+            {specs?.description ? (
+              <div className="rounded-2xl bg-white/5 border border-white/10 p-5 shadow-inner">
+                <p className="text-slate-300 text-sm leading-relaxed whitespace-pre-wrap">
+                  {specs.description}
+                </p>
+              </div>
+            ) : (
+              <div className="space-y-3">
+                {specEntries.map(([key, value]) => (
+                  <div key={key} className="rounded-2xl bg-white/5 border border-white/10 p-4">
+                    <div className="text-brand-400/80 text-[10px] font-bold uppercase tracking-wider mb-1.5">{key}</div>
+                    <div className="text-white font-bold text-sm leading-relaxed">{value}</div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         )}
       </div>

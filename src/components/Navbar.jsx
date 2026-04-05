@@ -8,9 +8,9 @@ import AuthModal from './AuthModal';
 const CATEGORIES = [
   { id: 'todos', label: 'Todos' },
   { id: 'laptops', label: 'Laptops' },
-  { id: 'pcs', label: 'PCs de Escritorio' },
-  { id: 'componentes', label: 'Componentes' },
+  { id: 'celulares', label: 'Celulares' },
   { id: 'accesorios', label: 'Accesorios' },
+  { id: 'componentes', label: 'Componentes' },
 ];
 
 export default function Navbar({ activeCategory, onCategoryChange, search, onSearchChange }) {
@@ -149,9 +149,11 @@ export default function Navbar({ activeCategory, onCategoryChange, search, onSea
         </div>
 
         {/* ─── Category nav ─── */}
-        <div className="border-t border-slate-100 dark:border-dark-700">
+        <div className="border-t border-slate-100 dark:border-dark-700 bg-white dark:bg-dark-800/90">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex gap-2 py-2.5 overflow-x-auto scrollbar-hide">
+            
+            {/* Desktop categories */}
+            <div className="hidden sm:flex gap-2 py-2.5 overflow-x-auto scrollbar-hide">
               {CATEGORIES.map(cat => (
                 <button
                   key={cat.id}
@@ -163,11 +165,34 @@ export default function Navbar({ activeCategory, onCategoryChange, search, onSea
                 </button>
               ))}
 
-              {/* Wholesale banner pill */}
+              {/* Wholesale banner pill (desktop) */}
               {isWholesale && (
-                <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 text-xs font-bold whitespace-nowrap ml-auto">
-                  <Crown size={11} /> Precios Mayorista Activos
+                <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100 dark:bg-amber-900/30 border border-amber-300 dark:border-amber-700/50 text-amber-700 dark:text-amber-400 text-xs font-bold whitespace-nowrap ml-auto animate-fade-in">
+                  <Crown size={11} /> ✓ Precios mayorista activos &mdash; ¡Bienvenido!
                 </span>
+              )}
+            </div>
+
+            {/* Mobile categories dropdown */}
+            <div className="sm:hidden py-3 flex items-center gap-3">
+              <select
+                className="input-field py-2 text-sm font-semibold flex-1 border-slate-300 dark:border-dark-600 bg-slate-50 dark:bg-dark-700"
+                value={activeCategory}
+                onChange={(e) => {
+                  onCategoryChange(e.target.value);
+                  setMenuOpen(false);
+                }}
+              >
+                {CATEGORIES.map(cat => (
+                  <option key={cat.id} value={cat.id}>{cat.label}</option>
+                ))}
+              </select>
+
+              {/* Wholesale banner icon (mobile) */}
+              {isWholesale && (
+                <div className="flex-shrink-0 w-9 h-9 flex items-center justify-center rounded-xl bg-amber-100 dark:bg-amber-900/30 border border-amber-300 dark:border-amber-700/50 text-amber-600 dark:text-amber-400">
+                  <Crown size={16} />
+                </div>
               )}
             </div>
           </div>

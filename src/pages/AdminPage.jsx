@@ -16,7 +16,7 @@ const ADMIN_PASSWORD = '63236';
 
 const CATEGORIES = [
   { id: 'laptops', label: 'Laptops' },
-  { id: 'pcs', label: 'PCs de Escritorio' },
+  { id: 'celulares', label: 'Celulares' },
   { id: 'componentes', label: 'Componentes' },
   { id: 'accesorios', label: 'Accesorios' },
 ];
@@ -30,62 +30,8 @@ const EMPTY_FORM = {
   images: [],
   available: true,
   tags: [],
-  specs: { '': '' },
+  specs: { description: '' },
 };
-
-function SpecsEditor({ specs, onChange }) {
-  const entries = Object.entries(specs || {});
-
-  const update = (idx, key, value) => {
-    const newEntries = [...entries];
-    newEntries[idx] = [key, value];
-    onChange(Object.fromEntries(newEntries));
-  };
-
-  const add = () => {
-    onChange({ ...specs, '': '' });
-  };
-
-  const remove = (idx) => {
-    const newEntries = entries.filter((_, i) => i !== idx);
-    onChange(Object.fromEntries(newEntries));
-  };
-
-  return (
-    <div className="space-y-2">
-      {entries.map(([k, v], idx) => (
-        <div key={idx} className="flex gap-2">
-          <input
-            className="input-field flex-1"
-            placeholder="Especificación (RAM, SSD…)"
-            value={k}
-            onChange={e => update(idx, e.target.value, v)}
-          />
-          <input
-            className="input-field flex-1"
-            placeholder="Valor"
-            value={v}
-            onChange={e => update(idx, k, e.target.value)}
-          />
-          <button
-            type="button"
-            onClick={() => remove(idx)}
-            className="p-2 rounded-lg text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
-          >
-            <X size={16} />
-          </button>
-        </div>
-      ))}
-      <button
-        type="button"
-        onClick={add}
-        className="text-sm text-brand-500 hover:text-brand-600 font-medium flex items-center gap-1 mt-1"
-      >
-        <Plus size={14} /> Agregar especificación
-      </button>
-    </div>
-  );
-}
 
 function ProductForm({ initial, onSave, onCancel }) {
   const [form, setForm] = useState(initial ?? EMPTY_FORM);
@@ -260,12 +206,17 @@ function ProductForm({ initial, onSave, onCancel }) {
         </div>
       </div>
 
-      {/* Specs */}
+      {/* Specs / Descripcion */}
       <div>
         <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
-          Especificaciones
+          Descripción del producto
         </label>
-        <SpecsEditor specs={form.specs} onChange={s => set('specs', s)} />
+        <textarea
+          className="input-field resize-y min-h-[120px]"
+          placeholder="Escribe la descripción o detalles del producto..."
+          value={form.specs?.description || ''}
+          onChange={e => set('specs', { ...form.specs, description: e.target.value })}
+        />
       </div>
 
       {/* Tags */}
@@ -404,14 +355,13 @@ function WholesaleCodePanel() {
       </p>
       <div className="flex gap-3">
         <div className="relative flex-1">
-          <svg className="absolute left-3 top-1/2 -translate-y-1/2 text-amber-400 pointer-events-none w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/>
-          </svg>
+          <KeyRound className="absolute left-3 top-1/2 -translate-y-1/2 text-amber-400 pointer-events-none" size={16} />
           <input
             type="text"
             value={code}
             onChange={e => setCode(e.target.value)}
-            className="input-field pl-9 font-mono tracking-widest border-amber-200 dark:border-amber-700/40 focus:ring-amber-400/30"
+            style={{ paddingLeft: '40px' }}
+            className="input-field font-mono tracking-widest border-amber-200 dark:border-amber-700/40 focus:ring-amber-400/30"
             placeholder="Escribe el código mayorista"
           />
         </div>
