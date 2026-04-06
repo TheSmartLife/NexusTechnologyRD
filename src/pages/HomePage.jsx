@@ -8,7 +8,7 @@ import { SlidersHorizontal } from 'lucide-react';
 
 export default function HomePage() {
   const { products, loading } = useProducts();
-  const [activeCategory, setActiveCategory] = useState('laptops');
+  const [activeCategory, setActiveCategory] = useState('todos');
   const [search, setSearch] = useState('');
   const [showOutOfStock, setShowOutOfStock] = useState(true);
 
